@@ -1,0 +1,153 @@
+.contact-image {
+    background-image: url("assets/images/design_6.png");
+    /* lower center center among x axis and bottom edge */
+    background-position: center bottom;
+    filter: saturate(0.7) sepia(0.2) contrast(1) brightness(1);
+}
+
+/* most of the time you will want to override the default input styles */
+input {
+    border: none;
+    outline: none;
+    line-height: 1.5;
+    font-family: var(--boundeins-strange-font);
+    font-size: 16px;
+    height: 48px;
+    padding: 0 12px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input::placeholder {
+    color: var(--color-2);
+}
+
+/* override the default class */
+.bg-orange {
+    background-color: var(--background-color);
+}
+
+.contact {
+    /* using css grid to stack the child boxes on top of each other */
+    display: grid;
+    place-items: center;
+    /* chop off edges of the box when the front element slides out */
+    overflow: hidden;
+}
+
+/* so our boxes stack on top of each other */
+.front,
+.back {
+    grid-area: 1/1;
+}
+
+/* add a transition to the transform property */
+.front {
+    transition: transform 0.5s ease-in;
+}
+
+/* we toggle this class using javascript */
+.front.slide-up {
+    transform: translateY(-100%);
+}
+
+/* we show a pointer cursor so the users know they can click on */
+/* group together as css works from top to bottom */
+/* what comes last gets applied */
+button {
+    /* cursor: pointer; */
+    outline: none;
+}
+
+.button {
+    display: inline-block;
+    background-color: var(--color-2);
+    color: var(--background-color);
+    text-transform: lowercase;
+    letter-spacing: 0.05em;
+    border: none;
+    padding: 24px 64px;
+    font-weight: 500;
+    border-radius: 16px;
+}
+
+.button-small {
+    font-size: 14px;
+    padding: 12px 20px;
+}
+
+.button-outline {
+    background-color: transparent;
+    border: solid 2px var(--color-2);
+    color: var(--text-color);
+}
+
+/* here we lock the form when it's submitting */
+.form-fields {
+    transition: opacity 0.5s ease;
+}
+
+.processing .form-fields {
+    opacity: 0.5;
+    /* disabled interaction with the form when its submitting */
+    pointer-events: none;
+}
+
+/* taken from http://tobiasahlin.com/spinkit/*/
+.spinner {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-2);
+    opacity: 0;
+    pointer-events: none;
+
+    /* margin: 100px auto; */
+    /* --webkit-animation: sk-rotateplane 1.2s infinite ease-in-out; */
+    animation: sk-rotateplane 1.2s infinite ease-in-out;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -20px;
+    margin-top: -20px;
+    transition: opacity 0.5s ease;
+    z-index: 10;
+    box-shadow: 0 0 11px 0px rgba(222, 184, 135, 0.5);
+}
+
+/* show the spinner when the form is processing */
+.processing .spinner {
+    opacity: 1;
+
+}
+
+/* @--webkit-keyframes sk-rotateplane {
+    0% {
+        --webkit-transform: perspective(120px)
+    }
+
+    50% {
+        --webkit-transform: perspective(120px) rotateY(180deg)
+    }
+
+    100% {
+        --webkit-transform: perspective(120px) rotateY(180deg) rotateX(180deg)
+    }
+} */
+
+@keyframes sk-rotateplane {
+    0% {
+        transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+        --webkit-transform: perspective(120px) rotateX(0deg) rotateY(0deg)
+    }
+
+    50% {
+        transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+        --webkit-transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
+    }
+
+    100% {
+        transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+        --webkit-transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+    }
+}
