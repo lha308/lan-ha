@@ -1,5 +1,5 @@
 # lan-ha
-my portfolio
+portfolio
 
 ## about me 
 ### digital communication ++ data science
